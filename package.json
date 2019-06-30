@@ -17,13 +17,29 @@
     "storybook": "NODE_PATH=src start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-checkout": "yarn install --frozen-lockfile",
+      "post-merge": "yarn install --frozen-lockfile",
+      "post-rewrite": "yarn install --frozen-lockfile"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "autoprefixer": "^9.6.0",
     "compression": "^1.7.1",
     "fast-deep-equal": "^2.0.1",
+    "husky": "^2.7.0",
     "immer": "^3.1.3",
     "js-joda": "^1.11.0",
+    "lint-staged": "^8.2.1",
     "polka": "^0.5.0",
     "postcss-import": "^12.0.1",
     "postcss-url": "^8.0.0",
